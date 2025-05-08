@@ -291,11 +291,15 @@ function clearLine() {
       game.field.unshift(Array(COLUMNS).fill(0));
       linesClearedCount += 1;
       row++;
+    } else {
+      break;
     }
   }
-  increaseScore(linesClearedCount);
-  game.linesCleared += linesClearedCount;
-  increaseLevel();
+  if (linesClearedCount !== 0) {
+    increaseScore(linesClearedCount);
+    game.linesCleared += linesClearedCount;
+    increaseLevel();
+  }
 }
 
 function increaseScore(lineClearedCount) {
