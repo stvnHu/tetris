@@ -23,7 +23,7 @@ const fallTimeScale = 0.8;
 
 const pieceData = {
   I: {
-    startingPos: { x: 3, y: 20 },
+    startingPos: { x: 3, y: BUFFER_OFFSET - 2 },
     pieceWidth: 6,
     pieceHeight: 3,
     pieceHeightOffset: 0,
@@ -53,7 +53,7 @@ const pieceData = {
     ],
   },
   J: {
-    startingPos: { x: 3, y: 20 },
+    startingPos: { x: 3, y: BUFFER_OFFSET - 2 },
     pieceWidth: 5,
     pieceHeight: 4,
     pieceHeightOffset: 1,
@@ -80,7 +80,7 @@ const pieceData = {
     ],
   },
   L: {
-    startingPos: { x: 3, y: 20 },
+    startingPos: { x: 3, y: BUFFER_OFFSET - 2 },
     pieceWidth: 5,
     pieceHeight: 4,
     pieceHeightOffset: 1,
@@ -106,7 +106,7 @@ const pieceData = {
     ],
   },
   O: {
-    startingPos: { x: 3, y: 20 },
+    startingPos: { x: 4, y: BUFFER_OFFSET - 2 },
     pieceWidth: 4,
     pieceHeight: 4,
     pieceHeightOffset: 1,
@@ -128,7 +128,7 @@ const pieceData = {
     ],
   },
   S: {
-    startingPos: { x: 3, y: 20 },
+    startingPos: { x: 3, y: BUFFER_OFFSET - 2 },
     pieceWidth: 5,
     pieceHeight: 4,
     pieceHeightOffset: 1,
@@ -154,7 +154,7 @@ const pieceData = {
     ],
   },
   Z: {
-    startingPos: { x: 3, y: 20 },
+    startingPos: { x: 3, y: BUFFER_OFFSET - 2 },
     pieceWidth: 5,
     pieceHeight: 4,
     pieceHeightOffset: 1,
@@ -180,7 +180,7 @@ const pieceData = {
     ],
   },
   T: {
-    startingPos: { x: 3, y: 20 },
+    startingPos: { x: 3, y: BUFFER_OFFSET - 2 },
     pieceWidth: 5,
     pieceHeight: 4,
     pieceHeightOffset: 1,
