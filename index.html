@@ -7,8 +7,35 @@
     <link rel="stylesheet" href="css/index.css" />
   </head>
   <body>
-    <canvas id="tetris"> </canvas>
-    <p id="p">(0,0)</p>
-    <script src="js/tetris.js"></script>
+    <div id="main">
+      <canvas id="tetris"> </canvas>
+
+      <div id="hold-div">
+        <h3>Hold</h3>
+        <canvas id="hold"> </canvas>
+      </div>
+
+      <div id="next-div">
+        <h3>Next</h3>
+        <canvas id="next"> </canvas>
+      </div>
+
+      <div id="controls">
+        <h3>Controls</h3>
+        <ul>
+          <li>&rarr;: Move right</li>
+          <li>&larr; : Move left</li>
+          <li>&darr; : Fast drop</li>
+          <li>X : Rotate clockwise</li>
+          <li>Z : Rotate anti-clockwise</li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="js/constants.js"></script>
+    <script src="js/gameFunctions.js"></script>
+    <script src="js/uiFunctions.js"></script>
+    <script src="js/gameLoop.js"></script>
+    <script src="js/ui.js"></script>
   </body>
 </html>

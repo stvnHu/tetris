@@ -1,14 +1,27 @@
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+
   background-color: #222;
   color: white;
+
   font-family: Arial, sans-serif;
-  margin: 0;
-  overflow: hidden;
+
+  position: relative;
 }
+#tetris,
+#hold-div,
+#next-div,
+#controls {
+  position: absolute;
+}
+
+h3 {
+  text-align: center;
+}
+
 canvas {
   border: 2px solid white;
 }
