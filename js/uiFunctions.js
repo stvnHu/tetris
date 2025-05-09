@@ -23,4 +23,7 @@ function initialiseUI() {
   emptyField(gameContext, COLUMNS, ROWS);
   emptyField(holdContext, DEFAULT_CANVAS_SIZE, DEFAULT_CANVAS_SIZE);
   emptyField(nextContext, DEFAULT_CANVAS_SIZE, DEFAULT_CANVAS_SIZE);
+  score.innerText = "Score: 0";
+  level.innerText = "Level: 1";
+  lines.innerText = "Lines: 0";
 }
