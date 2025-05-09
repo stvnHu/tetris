@@ -11,6 +11,8 @@ const nextDiv = document.getElementById("next-div");
 const nextCanvas = document.getElementById("next");
 const nextContext = nextCanvas.getContext("2d");
 
+const DEFAULT_CANVAS_SIZE = 4;
+
 const FULL_ROWS = 40;
 const ROWS = 20;
 const COLUMNS = 10;

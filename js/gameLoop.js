@@ -1,6 +1,6 @@
 setCanvasSize(gameCanvas, COLUMNS, ROWS, SCALE);
-setCanvasSize(holdCanvas, 5, 3, SCALE);
-setCanvasSize(nextCanvas, 5, 3, SCALE);
+setCanvasSize(holdCanvas, DEFAULT_CANVAS_SIZE, DEFAULT_CANVAS_SIZE, SCALE);
+setCanvasSize(nextCanvas, DEFAULT_CANVAS_SIZE, DEFAULT_CANVAS_SIZE, SCALE);
 
 let game = newGame();
 let gameState = "playing";
