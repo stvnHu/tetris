@@ -1,4 +1,8 @@
 const controlsUI = document.getElementById("controls");
+const gameInfo = document.getElementById("game-info");
+const score = document.getElementById("score");
+const level = document.getElementById("level");
+const lines = document.getElementById("lines");
 
 const gameCanvas = document.getElementById("tetris");
 const gameContext = gameCanvas.getContext("2d");

@@ -3,25 +3,31 @@ body {
   padding: 0;
   height: 100%;
   overflow: hidden;
-
   background-color: #222;
   color: white;
-
   font-family: Arial, sans-serif;
-
   position: relative;
 }
 #tetris,
 #hold-div,
 #next-div,
-#controls {
+#controls,
+#game-info {
   position: absolute;
 }
-
 h3 {
   text-align: center;
 }
-
+#score,
+#level,
+#lines {
+  font-size: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
 canvas {
   border: 2px solid white;
+}
+ul {
+  list-style-type: none;
 }

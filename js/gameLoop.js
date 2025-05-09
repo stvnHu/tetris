@@ -45,17 +45,12 @@ function frameUpdate(time = 0) {
     emptyField();
   } else if (gameState === "playing") {
     drawField();
+    updateGameInfo();
   } else if (gameState === "paused") {
     emptyField();
   } else if (gameState === "gameOver") {
     emptyField();
   }
-
-  /*
-const p = document.getElementById("p");
-  p.innerText = `Level: ${game.level}\nScore: ${game.score}\nLines: ${game.linesCleared}\nPosition: (${game.pos.x},${game.pos.y})`;
-
-*/
 
   requestAnimationFrame(frameUpdate);
 }

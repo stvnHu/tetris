@@ -9,17 +9,14 @@
   <body>
     <div id="main">
       <canvas id="tetris"> </canvas>
-
       <div id="hold-div">
         <h3>Hold</h3>
         <canvas id="hold"> </canvas>
       </div>
-
       <div id="next-div">
         <h3>Next</h3>
         <canvas id="next"> </canvas>
       </div>
-
       <div id="controls">
         <h3>Controls</h3>
         <ul>
@@ -31,7 +28,13 @@
         </ul>
       </div>
     </div>
-
+    <div id="game-info">
+      <ul>
+        <li id="score">Score</li>
+        <li id="level">Level</li>
+        <li id="lines">Lines</li>
+      </ul>
+    </div>
     <script src="js/constants.js"></script>
     <script src="js/gameFunctions.js"></script>
     <script src="js/uiFunctions.js"></script>
