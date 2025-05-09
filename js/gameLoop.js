@@ -1,29 +1,5 @@
-setCanvasSize(gameCanvas, COLUMNS, ROWS, SCALE);
-setCanvasSize(holdCanvas, DEFAULT_CANVAS_SIZE, DEFAULT_CANVAS_SIZE, SCALE);
-setCanvasSize(nextCanvas, DEFAULT_CANVAS_SIZE, DEFAULT_CANVAS_SIZE, SCALE);
-
 let game = newGame();
 let gameState = "playing";
-
-document.addEventListener("keydown", function (event) {
-  switch (event.key.toLowerCase()) {
-    case "arrowright":
-      moveX(1);
-      break;
-    case "arrowleft":
-      moveX(-1);
-      break;
-    case "arrowdown":
-      moveY();
-      break;
-    case "x":
-      rotate(1);
-      break;
-    case "z":
-      rotate(-1);
-      break;
-  }
-});
 
 let deltaTimeSum = 0;
 let lastTime = 0;
@@ -32,26 +8,21 @@ function frameUpdate(time = 0) {
   const deltaTime = time - lastTime;
   lastTime = time;
   deltaTimeSum += deltaTime;
-
   const fallTime = getFallTime();
   if (deltaTimeSum >= fallTime) {
     moveY();
     deltaTimeSum -= fallTime;
-
-    console.log(game);
   }
-
   if (gameState === "title") {
-    emptyField();
+    console.log("title");
   } else if (gameState === "playing") {
     drawField();
     updateGameInfo();
   } else if (gameState === "paused") {
-    emptyField();
+    console.log("paused");
   } else if (gameState === "gameOver") {
-    emptyField();
+    console.log("gameover");
   }
-
   requestAnimationFrame(frameUpdate);
 }
 

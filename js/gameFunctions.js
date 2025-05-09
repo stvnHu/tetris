@@ -4,7 +4,8 @@ function newGame() {
     level: 1,
     linesCleared: 0,
     ...getPiece(),
-    hold: randomPieceKey(),
+    hold: undefined,
+    held: false,
     next: randomPieceKey(),
     field: Array.from({ length: FULL_ROWS }, () => Array(COLUMNS).fill(0)),
   };
@@ -24,9 +25,22 @@ function getPiece(pieceKey) {
     rotation: 0,
   };
 }
-function newPiece() {
-  Object.assign(game, getPiece(game.next));
+function newPiece(pieceKey) {
+  Object.assign(game, getPiece(pieceKey));
+}
+function randomiseNextPiece() {
   game.next = randomPieceKey();
+}
+function hold() {
+  if (!game.held) {
+    game.held = true;
+    [game.hold, game.pieceKey] = [game.pieceKey, game.hold];
+    newPiece(game.pieceKey);
+    if (!game.pieceKey) {
+      newPiece(game.next);
+      randomiseNextPiece();
+    }
+  }
 }
 
 function setCanvasSize(canvas, width, height, scale) {
@@ -43,24 +57,24 @@ function drawField() {
     { ...game.pos, y: game.pos.y - BUFFER_OFFSET },
     gameContext
   );
-
-  setCanvasSize(
-    holdCanvas,
-    pieceData[game.hold].pieceWidth,
-    pieceData[game.hold].pieceHeight,
-    SCALE
-  );
-  emptyField(
-    holdContext,
-    pieceData[game.hold].pieceWidth,
-    pieceData[game.hold].pieceHeight
-  );
-  drawPieces(
-    pieceData[game.hold][0],
-    { x: 1, y: pieceData[game.hold].pieceHeightOffset },
-    holdContext
-  );
-
+  if (game.hold) {
+    setCanvasSize(
+      holdCanvas,
+      pieceData[game.hold].pieceWidth,
+      pieceData[game.hold].pieceHeight,
+      SCALE
+    );
+    emptyField(
+      holdContext,
+      pieceData[game.hold].pieceWidth,
+      pieceData[game.hold].pieceHeight
+    );
+    drawPieces(
+      pieceData[game.hold][0],
+      { x: 1, y: pieceData[game.hold].pieceHeightOffset },
+      holdContext
+    );
+  }
   setCanvasSize(
     nextCanvas,
     pieceData[game.next].pieceWidth,
@@ -103,7 +117,8 @@ function moveY() {
     game.pos.y--;
     placePiece();
     clearLine();
-    newPiece();
+    newPiece(game.next);
+    randomiseNextPiece();
   }
 }
 function rotate(dir) {
@@ -127,6 +142,7 @@ function placePiece() {
       if (value) game.field[game.pos.y + y][game.pos.x + x] = value;
     });
   });
+  game.held = false;
 }
 function clearLine() {
   let linesClearedCount = 0;

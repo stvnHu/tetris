@@ -18,3 +18,9 @@ function updateGameInfo() {
   level.innerText = `Level: ${game.level}`;
   lines.innerText = `Lines: ${game.linesCleared}`;
 }
+
+function initialiseUI() {
+  emptyField(gameContext, COLUMNS, ROWS);
+  emptyField(holdContext, DEFAULT_CANVAS_SIZE, DEFAULT_CANVAS_SIZE);
+  emptyField(nextContext, DEFAULT_CANVAS_SIZE, DEFAULT_CANVAS_SIZE);
+}
