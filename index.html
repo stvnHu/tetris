@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/index.css" />
   </head>
   <body>
+    <h1>Tetris</h1>
     <div id="main">
       <canvas id="tetris"> </canvas>
       <div id="hold-div">
@@ -20,6 +21,7 @@
       <div id="controls">
         <h3>Controls</h3>
         <ul>
+          <li>Escape: Pause</li>
           <li>&rarr;: Move right</li>
           <li>&larr; : Move left</li>
           <li>&darr; : Fast drop</li>
@@ -28,19 +30,29 @@
           <li>C : Hold</li>
         </ul>
       </div>
+      <div id="game-info">
+        <ul>
+          <li id="score">Score</li>
+          <li id="level">Level</li>
+          <li id="lines">Lines</li>
+        </ul>
+      </div>
     </div>
-    <div id="game-info">
-      <ul>
-        <li id="score">Score</li>
-        <li id="level">Level</li>
-        <li id="lines">Lines</li>
-      </ul>
+    <div id="title-screen">
+      <h2 id="play-button">Play</h2>
+    </div>
+    <div id="pause-screen">
+      <h2 id="resume-button">Resume</h2>
+      <h2 id="quit-button">Quit</h2>
+    </div>
+    <div id="game-over-screen">
+      <h2 id="game-over">Game Over</h2>
+      <h2 id="play-again-button">Play again</h2>
     </div>
     <script src="js/constants.js"></script>
     <script src="js/gameFunctions.js"></script>
     <script src="js/uiFunctions.js"></script>
-    <script src="js/ui.js"></script>
     <script src="js/gameLoop.js"></script>
-    <script src="js/keydownListener.js"></script>
+    <script src="js/eventListeners.js"></script>
   </body>
 </html>

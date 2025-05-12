@@ -12,11 +12,19 @@ body {
 #hold-div,
 #next-div,
 #controls,
-#game-info {
+#game-info,
+#title-screen,
+#pause-screen,
+#game-over-screen {
   position: absolute;
 }
+h1,
+h2,
 h3 {
   text-align: center;
+}
+ul {
+  list-style-type: none;
 }
 #score,
 #level,
@@ -25,9 +33,13 @@ h3 {
   padding-top: 30px;
   padding-bottom: 30px;
 }
+#play-button,
+#resume-button,
+#quit-button,
+#game-over,
+#play-again-button {
+  font-size: 60px;
+}
 canvas {
   border: 2px solid white;
-}
-ul {
-  list-style-type: none;
 }

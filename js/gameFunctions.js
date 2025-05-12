@@ -1,5 +1,8 @@
 function newGame() {
+  initialiseUI();
+  onWindowResize();
   return {
+    state: "title",
     score: 0,
     level: 1,
     linesCleared: 0,
@@ -15,9 +18,7 @@ function randomPieceKey() {
   return pieceKeys[Math.floor(Math.random() * pieceKeys.length)];
 }
 function getPiece(pieceKey) {
-  if (!pieceKey) {
-    pieceKey = randomPieceKey();
-  }
+  if (!pieceKey) pieceKey = randomPieceKey();
   return {
     pieceKey: pieceKey,
     piece: pieceData[pieceKey][0],
@@ -32,15 +33,13 @@ function randomiseNextPiece() {
   game.next = randomPieceKey();
 }
 function hold() {
-  if (!game.held) {
-    game.held = true;
-    [game.hold, game.pieceKey] = [game.pieceKey, game.hold];
-    newPiece(game.pieceKey);
-    if (!game.pieceKey) {
-      newPiece(game.next);
-      randomiseNextPiece();
-    }
-  }
+  if (game.held) return;
+  game.held = true;
+  [game.hold, game.pieceKey] = [game.pieceKey, game.hold];
+  newPiece(game.pieceKey);
+  if (game.pieceKey) return;
+  newPiece(game.next);
+  randomiseNextPiece();
 }
 
 function setCanvasSize(canvas, width, height, scale) {
@@ -57,24 +56,6 @@ function drawField() {
     { ...game.pos, y: game.pos.y - BUFFER_OFFSET },
     gameContext
   );
-  if (game.hold) {
-    setCanvasSize(
-      holdCanvas,
-      pieceData[game.hold].pieceWidth,
-      pieceData[game.hold].pieceHeight,
-      SCALE
-    );
-    emptyField(
-      holdContext,
-      pieceData[game.hold].pieceWidth,
-      pieceData[game.hold].pieceHeight
-    );
-    drawPieces(
-      pieceData[game.hold][0],
-      { x: 1, y: pieceData[game.hold].pieceHeightOffset },
-      holdContext
-    );
-  }
   setCanvasSize(
     nextCanvas,
     pieceData[game.next].pieceWidth,
@@ -90,6 +71,23 @@ function drawField() {
     pieceData[game.next][0],
     { x: 1, y: pieceData[game.next].pieceHeightOffset },
     nextContext
+  );
+  if (!game.hold) return;
+  setCanvasSize(
+    holdCanvas,
+    pieceData[game.hold].pieceWidth,
+    pieceData[game.hold].pieceHeight,
+    SCALE
+  );
+  emptyField(
+    holdContext,
+    pieceData[game.hold].pieceWidth,
+    pieceData[game.hold].pieceHeight
+  );
+  drawPieces(
+    pieceData[game.hold][0],
+    { x: 1, y: pieceData[game.hold].pieceHeightOffset },
+    holdContext
   );
 }
 function emptyField(context, columns, rows) {
@@ -113,21 +111,19 @@ function moveX(dir) {
 }
 function moveY() {
   game.pos.y++;
-  if (collide()) {
-    game.pos.y--;
-    placePiece();
-    clearLine();
-    newPiece(game.next);
-    randomiseNextPiece();
-  }
+  if (!collide()) return;
+  game.pos.y--;
+  placePiece();
+  clearLine();
+  newPiece(game.next);
+  randomiseNextPiece();
 }
 function rotate(dir) {
   game.rotation = (game.rotation + dir + 4) % 4;
   game.piece = pieceData[game.pieceKey][game.rotation];
-  if (collide()) {
-    game.rotation = (game.rotation - dir + 4) % 4;
-    game.piece = pieceData[game.pieceKey][game.rotation];
-  }
+  if (!collide()) return;
+  game.rotation = (game.rotation - dir + 4) % 4;
+  game.piece = pieceData[game.pieceKey][game.rotation];
 }
 function collide() {
   return game.piece.some((row, y) =>
@@ -154,13 +150,15 @@ function clearLine() {
       row++;
     } else if (game.field[row].every((value) => value === 0)) {
       break;
+    } else if (row < BUFFER_OFFSET) {
+      game.state = "gameOver";
     }
   }
-  if (linesClearedCount !== 0) {
-    increaseScore(linesClearedCount);
-    game.linesCleared += linesClearedCount;
-    increaseLevel();
-  }
+  if (!linesClearedCount) return;
+  increaseScore(linesClearedCount);
+  game.linesCleared += linesClearedCount;
+  increaseLevel();
+  updateGameInfo();
 }
 
 function increaseScore(lineClearedCount) {

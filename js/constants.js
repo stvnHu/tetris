@@ -1,8 +1,20 @@
 const controlsUI = document.getElementById("controls");
+
 const gameInfo = document.getElementById("game-info");
 const score = document.getElementById("score");
 const level = document.getElementById("level");
 const lines = document.getElementById("lines");
+
+const titleScreen = document.getElementById("title-screen");
+const playButton = document.getElementById("play-button");
+
+const pauseScreen = document.getElementById("pause-screen");
+const resumeButton = document.getElementById("resume-button");
+const quitButton = document.getElementById("quit-button");
+
+const gameOverScreen = document.getElementById("game-over-screen");
+const gameOver = document.getElementById("game-over");
+const playAgainButton = document.getElementById("play-again-button");
 
 const gameCanvas = document.getElementById("tetris");
 const gameContext = gameCanvas.getContext("2d");
