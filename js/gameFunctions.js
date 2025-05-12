@@ -36,10 +36,12 @@ function hold() {
   if (game.held) return;
   game.held = true;
   [game.hold, game.pieceKey] = [game.pieceKey, game.hold];
-  newPiece(game.pieceKey);
-  if (game.pieceKey) return;
-  newPiece(game.next);
-  randomiseNextPiece();
+  if (game.pieceKey) {
+    newPiece(game.pieceKey);
+  } else {
+    newPiece(game.next);
+    randomiseNextPiece();
+  }
 }
 
 function setCanvasSize(canvas, width, height, scale) {
