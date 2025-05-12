@@ -18,6 +18,11 @@ body {
 #game-over-screen {
   position: absolute;
 }
+#title-screen,
+#pause-screen,
+#game-over-screen {
+  background-color: black;
+}
 h1,
 h2,
 h3 {
